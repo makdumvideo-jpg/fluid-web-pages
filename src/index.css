@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Fizzyco Cola Design System - Tropical Sunset Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Tropical Sunset Color Palette */
+    --background: 25 15% 6%;
+    --foreground: 30 100% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 20 25% 8%;
+    --card-foreground: 30 100% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 20 25% 8%;
+    --popover-foreground: 30 100% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sunset Orange Primary */
+    --primary: 15 100% 58%;
+    --primary-foreground: 25 15% 6%;
+    --primary-glow: 25 100% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Deep Cola Secondary */
+    --secondary: 10 80% 25%;
+    --secondary-foreground: 30 100% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 20 15% 20%;
+    --muted-foreground: 30 50% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Tropical Accent */
+    --accent: 45 100% 60%;
+    --accent-foreground: 25 15% 6%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 30 100% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 20 25% 15%;
+    --input: 20 25% 15%;
+    --ring: 15 100% 58%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom Gradients */
+    --gradient-sunset: linear-gradient(135deg, hsl(15 100% 58%) 0%, hsl(25 100% 65%) 50%, hsl(10 80% 45%) 100%);
+    --gradient-tropical: linear-gradient(180deg, hsl(25 15% 6%) 0%, hsl(20 25% 8%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(15 100% 58%) 0%, hsl(10 80% 25%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(15 100% 58% / 0.3);
+    --shadow-card: 0 10px 25px hsl(0 0% 0% / 0.4);
+    
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -94,12 +110,59 @@ All colors MUST be HSL.
   }
 }
 
+}
+
 @layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+    background: var(--gradient-tropical);
+  }
+}
+
+@layer components {
+  /* Hero Button Variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground px-8 py-4 rounded-xl font-semibold tracking-wide;
+    @apply hover:scale-105 hover:shadow-[var(--shadow-glow)] transition-all duration-300;
+    @apply active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply border border-primary text-primary bg-transparent px-8 py-4 rounded-xl font-semibold;
+    @apply hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply relative text-foreground hover:text-primary transition-colors duration-300;
+    @apply after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary;
+    @apply after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  /* Animations */
+  .fade-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .fade-up.animate {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .scale-in {
+    @apply scale-95 opacity-0 transition-all duration-500 ease-out;
+  }
+  
+  .scale-in.animate {
+    @apply scale-100 opacity-100;
+  }
+  
+  /* Card Effects */
+  .card-tropical {
+    @apply bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-card)];
+    @apply hover:scale-105 hover:shadow-[var(--shadow-glow)] transition-all duration-400;
   }
 }
