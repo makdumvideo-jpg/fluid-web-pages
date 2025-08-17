@@ -161,6 +161,6 @@
   /* Card Effects */
   .card-tropical {
     @apply bg-card border border-border rounded-2xl p-6 shadow-[var(--shadow-card)];
-    @apply hover:scale-105 hover:shadow-[var(--shadow-glow)] transition-all duration-400;
+    @apply hover:scale-105 hover:shadow-[var(--shadow-glow)] transition-all duration-300;
   }
 }
